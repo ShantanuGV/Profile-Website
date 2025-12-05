@@ -50,7 +50,7 @@ const Hero = () => {
                         transition={{ duration: 0.5, delay: 0.4 }}
                         className="hero-btns"
                     >
-                        <a href="/Web_CV.pdf" download="Shantanu_Vispute_CV.pdf" className="btn">
+                        <a href="Web_CV.pdf" download="Shantanu_Vispute_CV.pdf" className="btn">
                             Download my CV
                         </a>
                     </motion.div>
