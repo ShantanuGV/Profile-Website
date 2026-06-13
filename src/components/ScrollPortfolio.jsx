@@ -1,15 +1,16 @@
-import React, { useState, useRef, Suspense, useLayoutEffect, useMemo } from 'react';
+import React, { useState, useRef, Suspense, useLayoutEffect, useMemo, lazy } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Stars, useGLTF, useTexture, Environment } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
 
-import Hero from '../sections/Hero';
-import About from '../sections/About';
-import Contact from '../sections/Contact';
-import Skills from '../sections/Skills';
-import Experience from '../sections/Experience';
-import Projects from '../sections/Projects';
+// 1. Lazy load your sections
+const Hero = lazy(() => import('../sections/Hero'));
+const About = lazy(() => import('../sections/About'));
+const Contact = lazy(() => import('../sections/Contact'));
+const Skills = lazy(() => import('../sections/Skills'));
+const Experience = lazy(() => import('../sections/Experience'));
+const Projects = lazy(() => import('../sections/Projects'));
 
 // ==========================================
 // 1. IMPORT ALL 3D MODELS
@@ -22,49 +23,35 @@ import cybertronModel from '../assets/Planets/transformers-the-planet-cybertron/
 // ==========================================
 // 2. IMPORT ALL TEXTURES 
 // ==========================================
-// Sun
 import sunTextureImg from '../assets/Planets/sun/textures/suncyl1.jpg';
-
-// Coruscant
 import coruscantColor from '../assets/Planets/coruscant/textures/planet_albedo.jpg';
 import coruscantEmissive from '../assets/Planets/coruscant/textures/courscant_planet_Emissive.jpg';
-
-// Qo'noS
 import qonosColor from '../assets/Planets/green-planet/textures/QonoS_Ground_Diff.png';
 import qonosNormal from '../assets/Planets/green-planet/textures/QonoS_Ground_Normal.png';
 import qonosEmissive from '../assets/Planets/green-planet/textures/QonoS_Ground_Emit.png';
 import qonosRoughness from '../assets/Planets/green-planet/textures/QonoS_Ground_Rough.png';
-
-// Experience (Alien Planet)
 import alienColor from '../assets/Planets/alien-planet/textures/RockPlanet_Color_lighter.png';
 import alienBump from '../assets/Planets/alien-planet/textures/RockPlanet_Bump.png';
 import alienEmission from '../assets/Planets/alien-planet/textures/RockPlanet_Emission.png';
 import alienRoughness from '../assets/Planets/alien-planet/textures/RockPlanet_Roughness.png';
-
-// Projects (Purple Planet)
 import purpleColor from '../assets/Planets/purple-planet/textures/surface_diff.tga.png';
 import purpleNormal from '../assets/Planets/purple-planet/textures/surface_norm.tga.png';
-
 
 // ==========================================
 // COMPONENTS
 // ==========================================
 
-// Standard GLTF Loader
 const GLTFPlanet = ({ path, scale }) => {
     const { scene } = useGLTF(path, true);
     return <primitive object={scene} scale={scale} />;
 };
 
-// Bulletproof GLTF Loader that safely applies custom textures
 const TexturedGLTF = ({ path, scale, texturePaths }) => {
     const { scene } = useGLTF(path, true);
     const textures = useTexture(texturePaths);
 
-    // useMemo clones the scene so we don't corrupt the cached original model
     const clonedScene = useMemo(() => {
         const clone = scene.clone();
-        
         clone.traverse((child) => {
             if (child.isMesh) {
                 child.material = new THREE.MeshStandardMaterial({
@@ -76,7 +63,6 @@ const TexturedGLTF = ({ path, scale, texturePaths }) => {
                     roughnessMap: textures.roughnessMap || null,
                     roughness: 0.8,
                 });
-                // Force Three.js to recognize the new material update
                 child.material.needsUpdate = true;
             }
         });
@@ -86,7 +72,6 @@ const TexturedGLTF = ({ path, scale, texturePaths }) => {
     return <primitive object={clonedScene} scale={scale} />;
 };
 
-// Procedural Textured Spheres
 const TexturedPlanet = ({ textures, size, displacementScale = 0.05 }) => {
     const props = useTexture(textures);
     return (
@@ -97,7 +82,6 @@ const TexturedPlanet = ({ textures, size, displacementScale = 0.05 }) => {
     );
 };
 
-// Main Planet Router
 const Planet = ({ planet, isActive }) => {
     const meshRef = useRef();
     const { id, position, size, type, path, textures, scale, texturePaths, displacementScale } = planet;
@@ -117,7 +101,6 @@ const Planet = ({ planet, isActive }) => {
     );
 };
 
-// Sun Component with texture
 const Sun = () => {
     const { scene } = useGLTF(sunModel, true);
     const texture = useTexture(sunTextureImg);
@@ -154,88 +137,29 @@ const Sun = () => {
 // DATA CONFIGURATION
 // ==========================================
 const planets = [
-    {
-        id: 'about',
-        position: [-2, -1, 6],
-        type: 'gltf',
-        path: coruscantModel,
-        scale: 0.6, // INCREASED from 0.005 to make it visible
-        texturePaths: {
-            map: coruscantColor,
-            emissiveMap: coruscantEmissive
-        }
-    },
-    {
-        id: 'skills',
-        position: [-4, 1, 4],
-        type: 'gltf',
-        path: qonosModel,
-        scale: 0.5, // INCREASED from 0.005 to make it visible
-        texturePaths: {
-            map: qonosColor,
-            normalMap: qonosNormal,
-            emissiveMap: qonosEmissive,
-            roughnessMap: qonosRoughness
-        }
-    },
-    {
-        id: 'experience',
-        position: [6, -1, 5],
-        type: 'texture',
-        textures: {
-            map: alienColor,
-            displacementMap: alienBump,
-            emissiveMap: alienEmission,
-            roughnessMap: alienRoughness
-        },
-        size: 0.6,
-        displacementScale: 0.05
-    },
-    {
-        id: 'projects',
-        position: [-5, 0, -6],
-        type: 'texture',
-        textures: {
-            map: purpleColor,
-            normalMap: purpleNormal,
-        },
-        size: 0.8
-    },
-    {
-        id: 'contact',
-        position: [3, 2, 7],
-        type: 'gltf',
-        path: cybertronModel,
-        scale: 0.008 // Kept original scale, adjust if it's too big/small
-    },
+    { id: 'about', position: [-2, -1, 6], type: 'gltf', path: coruscantModel, scale: 0.6, texturePaths: { map: coruscantColor, emissiveMap: coruscantEmissive } },
+    { id: 'skills', position: [-4, 1, 4], type: 'gltf', path: qonosModel, scale: 0.5, texturePaths: { map: qonosColor, normalMap: qonosNormal, emissiveMap: qonosEmissive, roughnessMap: qonosRoughness } },
+    { id: 'experience', position: [6, -1, 5], type: 'texture', textures: { map: alienColor, displacementMap: alienBump, emissiveMap: alienEmission, roughnessMap: alienRoughness }, size: 0.6, displacementScale: 0.05 },
+    { id: 'projects', position: [-5, 0, -6], type: 'texture', textures: { map: purpleColor, normalMap: purpleNormal }, size: 0.8 },
+    { id: 'contact', position: [3, 2, 7], type: 'gltf', path: cybertronModel, scale: 0.008 },
 ];
 
 const SolarSystem = ({ planets, activePlanetId }) => {
     const groupRef = useRef();
     const isFocused = planets.some(p => p.id === activePlanetId);
-
-    useFrame((state, delta) => {
-        if (!isFocused && groupRef.current) {
-            groupRef.current.rotation.y += 0.05 * delta;
-        }
-    });
-
+    useFrame((state, delta) => { if (!isFocused && groupRef.current) groupRef.current.rotation.y += 0.05 * delta; });
     return (
         <group ref={groupRef}>
-            {planets.map((planet) => (
-                <Planet key={planet.id} planet={planet} isActive={activePlanetId === planet.id} />
-            ))}
+            {planets.map((planet) => <Planet key={planet.id} planet={planet} isActive={activePlanetId === planet.id} />)}
         </group>
     );
 };
 
 const CameraController = ({ activePlanetId }) => {
-    const { scene, camera, controls } = useThree();
-
-    useFrame((state, delta) => {
+    const { scene, controls } = useThree();
+    useFrame((state) => {
         const targetPos = new THREE.Vector3(0, 15, 20);
         const targetLookAt = new THREE.Vector3(-7, 2, 10);
-
         if (activePlanetId && activePlanetId !== 'home') {
             const planetObject = scene.getObjectByName(activePlanetId);
             if (planetObject) {
@@ -245,21 +169,14 @@ const CameraController = ({ activePlanetId }) => {
                 targetLookAt.copy(planetWorldPos);
             }
         }
-
         state.camera.position.lerp(targetPos, 0.05);
-
-        if (controls) {
-            controls.target.lerp(targetLookAt, 0.05);
-            controls.update();
-        }
+        if (controls) { controls.target.lerp(targetLookAt, 0.05); controls.update(); }
     });
-
     return null;
 };
 
 const ScrollPortfolio = () => {
     const [activeSection, setActiveSection] = useState(-1);
-
     const sections = [
         { id: 'home', planet: 'home', component: Hero },
         { id: 'about', planet: 'about', component: About },
@@ -284,24 +201,14 @@ const ScrollPortfolio = () => {
                     <CameraController activePlanetId={sections[activeSection]?.planet} />
                 </Canvas>
             </div>
-
             <div className="scroll-content">
                 {sections.map((section, index) => (
-                    <motion.section
-                        key={section.id}
-                        className="portfolio-section"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: false, amount: 0.5 }}
-                        onViewportEnter={() => setActiveSection(index)}
-                    >
+                    <motion.section key={section.id} className="portfolio-section" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }} viewport={{ once: false, amount: 0.5 }} onViewportEnter={() => setActiveSection(index)}>
                         <div className="section-content">
-                            {section.component ? (
+                            {/* Suspense handles the lazy loading of each section */}
+                            <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
                                 <section.component />
-                            ) : (
-                                <h1>{section.title}</h1>
-                            )}
+                            </Suspense>
                         </div>
                     </motion.section>
                 ))}
@@ -310,7 +217,6 @@ const ScrollPortfolio = () => {
     );
 };
 
-// Preload assets
 useGLTF.preload(sunModel, true);
 useGLTF.preload(cybertronModel, true);
 useGLTF.preload(coruscantModel, true);
