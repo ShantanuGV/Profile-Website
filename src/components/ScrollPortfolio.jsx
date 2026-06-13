@@ -76,7 +76,7 @@ const TexturedPlanet = ({ textures, size, displacementScale = 0.05 }) => {
     const props = useTexture(textures);
     return (
         <mesh>
-            <sphereGeometry args={[size, 64, 64]} />
+            <sphereGeometry args={[size, 32, 32]} />
             <meshStandardMaterial {...props} displacementScale={displacementScale} />
         </mesh>
     );
@@ -195,7 +195,7 @@ const ScrollPortfolio = () => {
                         <Sun />
                         <SolarSystem planets={planets} activePlanetId={sections[activeSection]?.planet} />
                     </Suspense>
-                    <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+                    <Stars radius={100} depth={50} count={1500} factor={4} saturation={0} fade speed={1} />
                     <Environment preset="city" />
                     <OrbitControls enableZoom={false} enablePan={false} makeDefault />
                     <CameraController activePlanetId={sections[activeSection]?.planet} />
