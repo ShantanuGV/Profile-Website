@@ -24,7 +24,7 @@ const Experience = () => {
                     viewport={{ once: true }}
                     style={{ position: 'relative' }}
                 >
-                    <div className="section-highlight-number">03</div>
+                    <div className="section-highlight-number">04</div>
                     <h2 className="section-title"><span className="highlight">Where I've Worked</span></h2>
                 </motion.div>
 
