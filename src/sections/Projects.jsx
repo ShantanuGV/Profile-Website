@@ -33,7 +33,7 @@ const Projects = () => {
                     viewport={{ once: true }}
                     style={{ position: 'relative' }}
                 >
-                    <div className="section-highlight-number">04</div>
+                    <div className="section-highlight-number">03</div>
                     <h2 className="section-title"><span className="highlight">Some Things I've Built</span></h2>
                 </motion.div>
 
