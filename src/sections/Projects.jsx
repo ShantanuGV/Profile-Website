@@ -64,7 +64,7 @@ const projects = [
         external: "",
         image:
             "/curseyou.png",
-  external: "https://github.com/ShantanuGV/CuresYou",
+  external: "https://curesyou.vercel.app/",
   featured: true
 },
 {
@@ -76,7 +76,7 @@ const projects = [
         external: "",
         image:
             "/vhagar.png",
-  external: "https://github.com/ShantanuGV/Vhagar",
+  external: "",
   featured: true
 }
 ];
