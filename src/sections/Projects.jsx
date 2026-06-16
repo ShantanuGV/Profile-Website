@@ -75,7 +75,7 @@ const projects = [
             "https://github.com/ShantanuGV/Vhagar",
         external: "",
         image:
-            "/images/snakes.png",
+            "/vhagar.png",
   external: "https://github.com/ShantanuGV/Vhagar",
   featured: true
 }
