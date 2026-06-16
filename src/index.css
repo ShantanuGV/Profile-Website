@@ -577,57 +577,400 @@ button {
   color: var(--text-primary);
 }
 
-/* Projects */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+/* =========================
+   PROJECTS SECTION
+========================= */
+
+.projects-slider-wrapper {
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  margin-left: calc(50% - 50vw);
+  margin-top: 40px;
 }
 
+/* Fade effect on edges */
+.projects-slider-wrapper::before,
+.projects-slider-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.projects-slider-wrapper::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--bg-primary),
+    transparent
+  );
+}
+
+.projects-slider-wrapper::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    var(--bg-primary),
+    transparent
+  );
+}
+
+/* Slider */
+
+.projects-slider {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 20px 50px;
+  align-items: stretch;
+}
+
+.projects-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================
+   CARD
+========================= */
+
 .project-card {
-  background-color: var(--bg-secondary);
-  padding: 2rem;
-  border-radius: 4px;
-  transition: var(--transition);
+  min-width: 320px;
+  max-width: 320px;
+
+  background: var(--bg-secondary);
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+
+  transition: all 0.35s ease;
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.18);
+
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-8px) scale(1.02);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.28);
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.project-image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.project-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .project-title {
   color: var(--text-primary);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-bottom: 10px;
 }
 
 .project-description {
   color: var(--text-secondary);
-  font-size: 1rem;
-  margin-bottom: 20px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+
+  min-height: 68px;
+
+  margin-bottom: 15px;
 }
+
+/* =========================
+   TECH STACK
+========================= */
 
 .project-tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+
+  gap: 8px;
+
+  padding: 0;
+  margin: 0 0 18px 0;
+
+  list-style: none;
 }
+
+.project-tech li {
+  padding: 6px 12px;
+
+  border-radius: 30px;
+
+  background: rgba(100, 255, 218, 0.08);
+
+  color: var(--accent);
+
+  font-size: 0.75rem;
+
+  border: 1px solid rgba(100, 255, 218, 0.15);
+}
+
+/* =========================
+   LINKS
+========================= */
 
 .project-links {
   display: flex;
-  gap: 20px;
+  gap: 18px;
+  margin-top: auto;
 }
 
 .project-links a {
   color: var(--text-primary);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+
+  transition: all 0.3s ease;
 }
 
 .project-links a:hover {
   color: var(--accent);
+
+  transform: scale(1.15);
+}
+
+/* =========================
+   DOTS
+========================= */
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 25px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  transform: scale(1.25);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.active-dot {
+  width: 28px;
+
+  border-radius: 30px;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+.projects-slider {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+
+  scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;
+
+  padding: 30px 50px;
+
+  align-items: stretch;
+}
+
+
+.project-card {
+
+  scroll-snap-align: center;
+
+  min-width: 320px;
+
+  max-width: 320px;
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
+
+
+
+.project-card:hover {
+
+    box-shadow:
+    0 25px 50px rgba(0,0,0,.35);
+
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
+  .project-card {
+    min-width: 290px;
+    max-width: 290px;
+  }
+
+  .project-image {
+    height: 160px;
+  }
+}
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+
+@media (max-width: 768px) {
+
+  .projects-slider {
+    gap: 15px;
+    padding: 10px 15px;
+  }
+
+  .project-card {
+    min-width: 250px;
+    max-width: 250px;
+  }
+
+  .project-image {
+    height: 120px;
+  }
+
+  .project-content {
+    padding: 0.8rem;
+  }
+
+  .project-title {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .project-description {
+    font-size: 0.8rem;
+    line-height: 1.4;
+
+    min-height: 45px;
+
+    -webkit-line-clamp: 2;
+  }
+
+  .project-tech {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .project-tech li {
+    padding: 4px 8px;
+    font-size: 0.65rem;
+  }
+
+  .project-links a {
+    font-size: 1rem;
+  }
+
+  .slider-dots {
+    margin-top: 15px;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .active-dot {
+    width: 20px;
+    height: 8px;
+  }
+
+  /* Smaller fade edges */
+  .projects-slider-wrapper::before,
+  .projects-slider-wrapper::after {
+    width: 50px;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 480px) {
+
+  .project-card {
+    min-width: 220px;
+    max-width: 220px;
+  }
+
+  .project-image {
+    height: 100px;
+  }
+
+  .project-content {
+    padding: 0.7rem;
+  }
+
+  .project-title {
+    font-size: 0.95rem;
+  }
+
+  .project-description {
+    font-size: 0.75rem;
+    min-height: 40px;
+  }
+
+  .project-tech li {
+    font-size: 0.6rem;
+    padding: 3px 7px;
+  }
 }
 
 /* Experience */
@@ -665,21 +1008,75 @@ button {
 }
 
 /* Contact */
-.contact-container {
-  text-align: center;
-  max-width: 600px;
+/* CONTACT SECTION */
+
+.contact-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.contact-title {
-  font-size: clamp(40px, 5vw, 60px);
-  color: var(--text-primary);
-  margin-bottom: 20px;
+.contact-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2rem;
 }
 
-.contact-text {
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  margin-bottom: 50px;
+.contact-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #64ffda;
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 200px;
+}
+
+.contact-btn {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .contact-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        max-width: 100%;
+    }
+
+    .contact-btn {
+        width: 100%;
+    }
 }
 
 /* ==================== MOBILE RESPONSIVE STYLES ==================== */
