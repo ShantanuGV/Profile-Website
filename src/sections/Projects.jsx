@@ -34,9 +34,9 @@ const projects = [
         github:
             "https://github.com/ShantanuGV/Carbon-Emission-Forecasting",
         external:
-            "https://github.com/ShantanuGV/Carbon-Emission-Forecasting",
+            "https://carbon-emission-forecasting.onrender.com/",
         image:
-            "/images/portfolio.png",
+            "Caobon.png",
         featured: true
     },
 
