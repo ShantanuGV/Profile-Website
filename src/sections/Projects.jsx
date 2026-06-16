@@ -63,7 +63,7 @@ const projects = [
             "https://github.com/ShantanuGV/CuresYou",
         external: "",
         image:
-            "/images/snakes.png",
+            "/curseyou.png",
   external: "https://github.com/ShantanuGV/CuresYou",
   featured: true
 },
