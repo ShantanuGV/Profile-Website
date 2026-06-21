@@ -701,7 +701,7 @@ button {
 .project-description {
   color: var(--text-secondary);
   font-size: 0.46rem;
-  line-height: 1.6;
+  line-height: 1;
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
