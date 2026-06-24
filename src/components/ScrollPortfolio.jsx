@@ -208,21 +208,40 @@ const SolarSystem = ({ planets, activePlanetId }) => {
 
 const CameraController = ({ activePlanetId }) => {
     const { scene, controls } = useThree();
+
+    const lastUpdate = useRef(0);
+    const FPS = 28;
+    const frameInterval = 1 / FPS;
+
     useFrame((state) => {
+        const elapsed = state.clock.getElapsedTime();
+
+        if (elapsed - lastUpdate.current < frameInterval) return;
+        lastUpdate.current = elapsed;
+
         const targetPos = new THREE.Vector3(0, 15, 20);
         const targetLookAt = new THREE.Vector3(-7, 2, 10);
+
         if (activePlanetId && activePlanetId !== 'home') {
             const planetObject = scene.getObjectByName(activePlanetId);
+
             if (planetObject) {
                 const planetWorldPos = new THREE.Vector3();
                 planetObject.getWorldPosition(planetWorldPos);
+
                 targetPos.copy(planetWorldPos).add(new THREE.Vector3(0, 2, 4));
                 targetLookAt.copy(planetWorldPos);
             }
         }
-        state.camera.position.lerp(targetPos, 0.05);
-        if (controls) { controls.target.lerp(targetLookAt, 0.05); controls.update(); }
+
+        state.camera.position.lerp(targetPos, 0.12);
+
+        if (controls) {
+            controls.target.lerp(targetLookAt, 0.12);
+            controls.update();
+        }
     });
+
     return null;
 };
 
