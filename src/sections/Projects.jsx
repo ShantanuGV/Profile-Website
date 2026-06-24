@@ -20,7 +20,7 @@ const projects = [
             "https://github.com/ShantanuGV/Workshope_Website",
         external: "https://workshopewebsitegcoerc.vercel.app/",
         image:
-            "/Workshope_Website.png",
+            "/Workshope_Website.webp",
         featured: true
     },
 
@@ -36,7 +36,7 @@ const projects = [
         external:
             "https://carbon-emission-forecasting.onrender.com/",
         image:
-            "Caobon.png",
+            "Caobon.webp",
         featured: true
     },
 
@@ -52,7 +52,7 @@ const projects = [
             "https://github.com/ShantanuGV/SnakesAndLadders",
         
         image:
-            "/SnakesAndLadders.png",
+            "/SnakesAndLadders.webp",
         featured: false
     },
     {
@@ -63,7 +63,7 @@ const projects = [
             "https://github.com/ShantanuGV/CuresYou",
         external: "",
         image:
-            "/curseyou.png",
+            "/curseyou.webp",
   external: "https://curesyou.vercel.app/",
   featured: true
 },
@@ -75,7 +75,7 @@ const projects = [
             "https://github.com/ShantanuGV/Vhagar",
         
         image:
-            "/vhagar.png",
+            "/vhagar.webp",
   external: "",
   featured: true
 }
