@@ -553,8 +553,8 @@ canvas,
     .hero-nexus {
         grid-area: nexus;
 
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
 
         justify-self: end;
         transform: translateY(0px);
