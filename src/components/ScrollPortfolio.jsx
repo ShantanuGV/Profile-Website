@@ -3,7 +3,6 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Stars, useGLTF, useTexture, Environment } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
-
 // 1. Lazy load your sections
 const Hero = lazy(() => import('../sections/Hero'));
 const About = lazy(() => import('../sections/About'));
@@ -23,19 +22,19 @@ import cybertronModel from '../assets/Planets/transformers-the-planet-cybertron/
 // ==========================================
 // 2. IMPORT ALL TEXTURES 
 // ==========================================
-import sunTextureImg from '../assets/Planets/sun/textures/suncyl1.webp';
-import coruscantColor from '../assets/Planets/coruscant/textures/planet_albedo.webp';
-import coruscantEmissive from '../assets/Planets/coruscant/textures/courscant_planet_Emissive.webp';
-import qonosColor from '../assets/Planets/green-planet/textures/QonoS_Ground_Diff.webp';
-import qonosNormal from '../assets/Planets/green-planet/textures/QonoS_Ground_Normal.webp';
-import qonosEmissive from '../assets/Planets/green-planet/textures/QonoS_Ground_Emit.webp';
-import qonosRoughness from '../assets/Planets/green-planet/textures/QonoS_Ground_Rough.webp';
-import alienColor from '../assets/Planets/alien-planet/textures/RockPlanet_Color_lighter.webp';
-import alienBump from '../assets/Planets/alien-planet/textures/RockPlanet_Bump.webp';
-import alienEmission from '../assets/Planets/alien-planet/textures/RockPlanet_Emission.webp';
-import alienRoughness from '../assets/Planets/alien-planet/textures/RockPlanet_Roughness.webp';
-import purpleColor from '../assets/Planets/purple-planet/textures/surface_diff.tga.webp';
-import purpleNormal from '../assets/Planets/purple-planet/textures/surface_norm.tga.webp';
+import sunTextureImg from '../assets/Planets/sun/textures/suncyl1.jpg';
+import coruscantColor from '../assets/Planets/coruscant/textures/planet_albedo.jpg';
+import coruscantEmissive from '../assets/Planets/coruscant/textures/courscant_planet_Emissive.jpg';
+import qonosColor from '../assets/Planets/green-planet/textures/QonoS_Ground_Diff.png';
+import qonosNormal from '../assets/Planets/green-planet/textures/QonoS_Ground_Normal.png';
+import qonosEmissive from '../assets/Planets/green-planet/textures/QonoS_Ground_Emit.png';
+import qonosRoughness from '../assets/Planets/green-planet/textures/QonoS_Ground_Rough.png';
+import alienColor from '../assets/Planets/alien-planet/textures/RockPlanet_Color_lighter.png';
+import alienBump from '../assets/Planets/alien-planet/textures/RockPlanet_Bump.png';
+import alienEmission from '../assets/Planets/alien-planet/textures/RockPlanet_Emission.png';
+import alienRoughness from '../assets/Planets/alien-planet/textures/RockPlanet_Roughness.png';
+import purpleColor from '../assets/Planets/purple-planet/textures/surface_diff.tga.png';
+import purpleNormal from '../assets/Planets/purple-planet/textures/surface_norm.tga.png';
 
 // ==========================================
 // COMPONENTS
@@ -195,8 +194,8 @@ const ScrollPortfolio = () => {
                         <Sun />
                         <SolarSystem planets={planets} activePlanetId={sections[activeSection]?.planet} />
                     </Suspense>
-                    <Stars radius={100} depth={50} count={1500} factor={4} saturation={0} fade speed={1} />
-                    <Environment preset="city" />
+                    <Stars radius={100} depth={50} count={500} factor={4} saturation={0} fade speed={1} />
+                    <ambientLight intensity={0.8} /> {/*<Environment preset="city" />*/}
                     <OrbitControls enableZoom={false} enablePan={false} makeDefault />
                     <CameraController activePlanetId={sections[activeSection]?.planet} />
                 </Canvas>
@@ -217,9 +216,10 @@ const ScrollPortfolio = () => {
     );
 };
 
-useGLTF.preload(sunModel, true);
-useGLTF.preload(cybertronModel, true);
-useGLTF.preload(coruscantModel, true);
-useGLTF.preload(qonosModel, true);
+//useGLTF.preload(sunModel, true);
+//useGLTF.preload(cybertronModel, true);
+//useGLTF.preload(coruscantModel, true);
+//useGLTF.preload(qonosModel, true);
 
 export default ScrollPortfolio;
+
