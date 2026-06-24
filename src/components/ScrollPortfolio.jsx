@@ -4,7 +4,7 @@ import { OrbitControls, Stars, useGLTF, useTexture, Environment } from '@react-t
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
 // 1. Lazy load your sections
-const Hero = lazy(() => import('../sections/Hero'));
+//const Hero = lazy(() => import('../sections/Hero'));
 const About = lazy(() => import('../sections/About'));
 const Contact = lazy(() => import('../sections/Contact'));
 const Skills = lazy(() => import('../sections/Skills'));
@@ -177,7 +177,7 @@ const CameraController = ({ activePlanetId }) => {
 const ScrollPortfolio = () => {
     const [activeSection, setActiveSection] = useState(-1);
     const sections = [
-        { id: 'home', planet: 'home', component: Hero },
+        //{ id: 'home', planet: 'home', component: Hero },
         { id: 'about', planet: 'about', component: About },
         { id: 'skills', planet: 'skills', component: Skills },
         { id: 'projects', planet: 'projects', component: Projects },
