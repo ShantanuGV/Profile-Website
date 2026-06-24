@@ -23,19 +23,19 @@ import cybertronModel from '../assets/Planets/transformers-the-planet-cybertron/
 // ==========================================
 // 2. IMPORT ALL TEXTURES 
 // ==========================================
-import sunTextureImg from '../assets/Planets/sun/textures/suncyl1.jpg';
-import coruscantColor from '../assets/Planets/coruscant/textures/planet_albedo.jpg';
-import coruscantEmissive from '../assets/Planets/coruscant/textures/courscant_planet_Emissive.jpg';
-import qonosColor from '../assets/Planets/green-planet/textures/QonoS_Ground_Diff.png';
-import qonosNormal from '../assets/Planets/green-planet/textures/QonoS_Ground_Normal.png';
-import qonosEmissive from '../assets/Planets/green-planet/textures/QonoS_Ground_Emit.png';
-import qonosRoughness from '../assets/Planets/green-planet/textures/QonoS_Ground_Rough.png';
-import alienColor from '../assets/Planets/alien-planet/textures/RockPlanet_Color_lighter.png';
-import alienBump from '../assets/Planets/alien-planet/textures/RockPlanet_Bump.png';
-import alienEmission from '../assets/Planets/alien-planet/textures/RockPlanet_Emission.png';
-import alienRoughness from '../assets/Planets/alien-planet/textures/RockPlanet_Roughness.png';
-import purpleColor from '../assets/Planets/purple-planet/textures/surface_diff.tga.png';
-import purpleNormal from '../assets/Planets/purple-planet/textures/surface_norm.tga.png';
+import sunTextureImg from '../assets/Planets/sun/textures/suncyl1.webp';
+import coruscantColor from '../assets/Planets/coruscant/textures/planet_albedo.webp';
+import coruscantEmissive from '../assets/Planets/coruscant/textures/courscant_planet_Emissive.webp';
+import qonosColor from '../assets/Planets/green-planet/textures/QonoS_Ground_Diff.webp';
+import qonosNormal from '../assets/Planets/green-planet/textures/QonoS_Ground_Normal.webp';
+import qonosEmissive from '../assets/Planets/green-planet/textures/QonoS_Ground_Emit.webp';
+import qonosRoughness from '../assets/Planets/green-planet/textures/QonoS_Ground_Rough.webp';
+import alienColor from '../assets/Planets/alien-planet/textures/RockPlanet_Color_lighter.webp';
+import alienBump from '../assets/Planets/alien-planet/textures/RockPlanet_Bump.webp';
+import alienEmission from '../assets/Planets/alien-planet/textures/RockPlanet_Emission.webp';
+import alienRoughness from '../assets/Planets/alien-planet/textures/RockPlanet_Roughness.webp';
+import purpleColor from '../assets/Planets/purple-planet/textures/surface_diff.tga.webp';
+import purpleNormal from '../assets/Planets/purple-planet/textures/surface_norm.tga.webp';
 
 // ==========================================
 // COMPONENTS
