@@ -427,6 +427,141 @@ button {
 }
 
 /* Hero */
+
+.hero-info {
+    display: inline-grid;
+
+    grid-template-columns: 1fr auto;
+
+    grid-template-areas:
+        "description nexus"
+        "button nexus";
+
+    column-gap: 50px;
+    row-gap: 0px;
+
+    align-items: center;
+}
+
+.hero-description {
+    grid-area: description;
+}
+
+.hero-btns {
+    grid-area: button;
+    justify-self: start;
+}
+
+.hero-nexus {
+    grid-area: nexus;
+
+    width: 300px;
+    height: 300px;
+
+    justify-self: end;
+    transform: translateY(-80px);
+}
+
+.ascii-face {
+    grid-area: photo;
+    margin-left: 0px;
+    padding: 0;
+    white-space: pre;
+    font-family: "Courier New", monospace;
+    color: var(--accent);
+    font-size: 4.5px;
+    line-height: 1;
+    white-space: pre;
+    text-shadow: 0 0 8px rgba(100,255,218,.5);
+    animation: drift 8s ease-in-out infinite;
+}
+
+.ascii-char {
+    display: inline-block;
+
+    animation-name: floatChar;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+
+    transition:
+        transform 0.2s ease,
+        text-shadow 0.2s ease,
+        color 0.2s ease;
+}
+
+.ascii-char:hover {
+    transform: scale(1.8);
+    color: #64ffda;
+
+    text-shadow:
+        0 0 5px #64ffda,
+        0 0 15px #64ffda,
+        0 0 25px #64ffda;
+}
+
+canvas,
+.hero-model {
+    background: transparent;
+}
+
+@keyframes floatChar {
+
+    0% {
+        transform: translate(0px, 0px);
+    }
+
+    25% {
+        transform: translate(1px, -2px);
+    }
+
+    50% {
+        transform: translate(-2px, -4px);
+    }
+
+    75% {
+        transform: translate(2px, -1px);
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .hero-info {
+        grid-template-columns: auto 1fr;
+
+        grid-template-areas:
+            "description description"
+            "button nexus";
+
+        column-gap: 5px;
+        row-gap: 0px;
+
+        align-items: center;
+    }
+
+    .hero-btns {
+        grid-area: button;
+        justify-self: start;
+    }
+
+    .hero-nexus {
+        grid-area: nexus;
+
+        width: 150px;
+        height: 150px;
+
+        justify-self: end;
+        transform: translateY(0px);
+    }
+}
+
+
 .hero-section {
   min-height: 100vh;
   display: flex;
