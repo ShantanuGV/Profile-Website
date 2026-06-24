@@ -50,7 +50,7 @@ const projects = [
         ],
         github:
             "https://github.com/ShantanuGV/SnakesAndLadders",
-        external: "",
+        
         image:
             "/SnakesAndLadders.png",
         featured: false
@@ -73,7 +73,7 @@ const projects = [
   tech: ["Python", "AI", "Automation"],
   github:
             "https://github.com/ShantanuGV/Vhagar",
-        external: "",
+        
         image:
             "/vhagar.png",
   external: "",
