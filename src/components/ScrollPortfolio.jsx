@@ -196,7 +196,7 @@ const ScrollPortfolio = () => {
                     </Suspense>
                     <Stars radius={100} depth={50} count={500} factor={4} saturation={0} fade speed={1} />
                     <ambientLight intensity={0.8} /> {/*<Environment preset="city" />*/}
-                    <OrbitControls enableZoom={false} enablePan={false} makeDefault />
+                    <OrbitControls enabled={false} makeDefault />
                     <CameraController activePlanetId={sections[activeSection]?.planet} />
                 </Canvas>
             </div>
