@@ -210,7 +210,7 @@ const CameraController = ({ activePlanetId }) => {
     const { scene, controls } = useThree();
 
     const lastUpdate = useRef(0);
-    const FPS = 28;
+    const FPS = 60;
     const frameInterval = 1 / FPS;
 
     useFrame((state) => {
@@ -234,10 +234,10 @@ const CameraController = ({ activePlanetId }) => {
             }
         }
 
-        state.camera.position.lerp(targetPos, 0.12);
+        state.camera.position.lerp(targetPos, 0.05);
 
         if (controls) {
-            controls.target.lerp(targetLookAt, 0.12);
+            controls.target.lerp(targetLookAt, 0.05);
             controls.update();
         }
     });
