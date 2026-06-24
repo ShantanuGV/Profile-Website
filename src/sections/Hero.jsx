@@ -73,10 +73,10 @@ const Hero = () => {
                                 of Engineering and Research Center.
                             </div>
 
-                            {/* ASCII Photo */}
+                            {/* ASCII Photo 
                             <div className="hero-nexus">
                                 <CanvasModel/>
-                            </div>
+                            </div>*/}
                             
 
 
