@@ -4,7 +4,7 @@ import { OrbitControls, Stars, useGLTF, useTexture, Environment } from '@react-t
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
 // 1. Lazy load your sections
-//const Hero = lazy(() => import('../sections/Hero'));
+const Hero = lazy(() => import('../sections/Hero'));
 const About = lazy(() => import('../sections/About'));
 const Contact = lazy(() => import('../sections/Contact'));
 const Skills = lazy(() => import('../sections/Skills'));
@@ -177,7 +177,7 @@ const CameraController = ({ activePlanetId }) => {
 const ScrollPortfolio = () => {
     const [activeSection, setActiveSection] = useState(-1);
     const sections = [
-        //{ id: 'home', planet: 'home', component: Hero },
+        { id: 'home', planet: 'home', component: Hero },
         { id: 'about', planet: 'about', component: About },
         { id: 'skills', planet: 'skills', component: Skills },
         { id: 'projects', planet: 'projects', component: Projects },
@@ -188,17 +188,7 @@ const ScrollPortfolio = () => {
     return (
         <div className="scroll-portfolio">
             <div className="solar-system-fixed">
-                <Canvas camera={{ position: [0, 15, 20], fov: 60 }} gl={{ alpha: true }} style={{ background: 'transparent' }}>
-                    <ambientLight intensity={0.4} />
-                    <Suspense fallback={null}>
-                        <Sun />
-                        <SolarSystem planets={planets} activePlanetId={sections[activeSection]?.planet} />
-                    </Suspense>
-                    <Stars radius={100} depth={50} count={500} factor={4} saturation={0} fade speed={1} />
-                    <ambientLight intensity={0.8} /> {/*<Environment preset="city" />*/}
-                    <OrbitControls enabled={false} makeDefault />
-                    <CameraController activePlanetId={sections[activeSection]?.planet} />
-                </Canvas>
+                
             </div>
             <div className="scroll-content">
                 {sections.map((section, index) => (
