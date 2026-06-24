@@ -75,7 +75,7 @@ const TexturedPlanet = ({ textures, size, displacementScale = 0.05 }) => {
     const props = useTexture(textures);
     return (
         <mesh>
-            <sphereGeometry args={[size, 64, 64]} />
+            <sphereGeometry args={[size, 24, 24]} />
             <meshStandardMaterial {...props} displacementScale={displacementScale} />
         </mesh>
     );
