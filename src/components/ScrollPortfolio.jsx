@@ -1,6 +1,6 @@
 import React, { useState, useRef, Suspense, useLayoutEffect, useMemo, lazy } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Stars, useGLTF, useTexture, Environment } from '@react-three/drei';
+import { OrbitControls, Stars, useGLTF, useTexture} from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
 // 1. Lazy load your sections
@@ -17,7 +17,7 @@ const Projects = lazy(() => import('../sections/Projects'));
 import sunModel from '../assets/Planets/sun/source/UnstableStar_compressed.glb';
 import coruscantModel from '../assets/Planets/coruscant/source/courscant_compressed.glb';
 import qonosModel from '../assets/Planets/green-planet/source/QonoS_compressed.glb';
-import cybertronModel from '../assets/Planets/transformers-the-planet-cybertron/source/extracted/untitled_compressed.glb'; 
+import cybertronModel from '../assets/Planets/transformers-the-planet-cybertron/source/extracted/untitled_compressed.glb';
 
 // ==========================================
 // 2. IMPORT ALL TEXTURES 
@@ -136,11 +136,63 @@ const Sun = () => {
 // DATA CONFIGURATION
 // ==========================================
 const planets = [
-    { id: 'about', position: [-2, -1, 6], type: 'gltf', path: coruscantModel, scale: 0.6, texturePaths: { map: coruscantColor, emissiveMap: coruscantEmissive } },
-    { id: 'skills', position: [-4, 1, 4], type: 'gltf', path: qonosModel, scale: 0.5, texturePaths: { map: qonosColor, normalMap: qonosNormal, emissiveMap: qonosEmissive, roughnessMap: qonosRoughness } },
-    { id: 'experience', position: [6, -1, 5], type: 'texture', textures: { map: alienColor, displacementMap: alienBump, emissiveMap: alienEmission, roughnessMap: alienRoughness }, size: 0.6, displacementScale: 0.05 },
-    { id: 'projects', position: [-5, 0, -6], type: 'texture', textures: { map: purpleColor, normalMap: purpleNormal }, size: 0.8 },
-    { id: 'contact', position: [3, 2, 7], type: 'gltf', path: cybertronModel, scale: 0.008 },
+    {
+        id: 'about',
+        position: [-2, -1, 6],
+        type: 'gltf',
+        path: coruscantModel,
+        scale: 0.6,
+        texturePaths: {
+            map: coruscantColor
+            // emissiveMap removed
+        }
+    },
+
+    {
+        id: 'skills',
+        position: [-4, 1, 4],
+        type: 'gltf',
+        path: qonosModel,
+        scale: 0.5,
+        texturePaths: {
+            map: qonosColor
+            // normalMap removed
+            // emissiveMap removed
+            // roughnessMap removed
+        }
+    },
+
+    {
+        id: 'experience',
+        position: [6, -1, 5],
+        type: 'texture',
+        textures: {
+            map: alienColor
+            // displacementMap removed
+            // emissiveMap removed
+            // roughnessMap removed
+        },
+        size: 0.6
+    },
+
+    {
+        id: 'projects',
+        position: [-5, 0, -6],
+        type: 'texture',
+        textures: {
+            map: purpleColor
+            // normalMap removed
+        },
+        size: 0.8
+    },
+
+    {
+        id: 'contact',
+        position: [3, 2, 7],
+        type: 'gltf',
+        path: cybertronModel,
+        scale: 0.008
+    }
 ];
 
 const SolarSystem = ({ planets, activePlanetId }) => {
@@ -188,6 +240,18 @@ const ScrollPortfolio = () => {
     return (
         <div className="scroll-portfolio">
             <div className="solar-system-fixed">
+                
+                <Canvas camera={{ position: [0, 15, 20], fov: 60 }} gl={{ alpha: true }} style={{ background: 'transparent' }}>
+                    <ambientLight intensity={0.4} />
+                    <Suspense fallback={null}>
+                        <Sun />
+                        <SolarSystem planets={planets} activePlanetId={sections[activeSection]?.planet} />
+                    </Suspense>
+                    <Stars radius={100} depth={50} count={500} factor={4} saturation={0} fade speed={1} />
+                    <ambientLight intensity={0.8} /> {/*<Environment preset="city" />*/}
+                    <OrbitControls enabled={false} makeDefault />
+                    <CameraController activePlanetId={sections[activeSection]?.planet} />
+                </Canvas>
                 
             </div>
             <div className="scroll-content">
