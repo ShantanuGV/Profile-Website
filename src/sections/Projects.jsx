@@ -56,7 +56,7 @@ const projects = [
         featured: false
     },
     {
-  title: "CuresYou",
+  title: "CurseYou",
   description: "An art platform that transforms a user's name into unique large-scale typography inspired by real-world geographic features and satellite imagery, creating personalized visual artworks from natural patterns.",
   tech: ["Python", "AI", "Computer Vision", "Image Processing"],
   github:
