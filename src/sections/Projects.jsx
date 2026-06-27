@@ -60,11 +60,11 @@ const projects = [
   description: "An art platform that transforms a user's name into unique large-scale typography inspired by real-world geographic features and satellite imagery, creating personalized visual artworks from natural patterns.",
   tech: ["Python", "AI", "Computer Vision", "Image Processing"],
   github:
-            "https://github.com/ShantanuGV/CuresYou",
+            "https://github.com/ShantanuGV/CurseYou",
         external: "",
         image:
             "/curseyou.webp",
-  external: "https://curesyou.vercel.app/",
+  external: "https://curseyou.vercel.app/",
   featured: true
 },
 {
