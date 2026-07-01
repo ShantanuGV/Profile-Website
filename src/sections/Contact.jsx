@@ -18,37 +18,44 @@ const Contact = () => {
         });
     };
 
-    const handleSend = (e) => {
-        e.preventDefault();
+    const handleSend = async (e) => {
+    e.preventDefault();
 
-        if (status === 'sending') return;
+    if (status === "sending") return;
 
-        setStatus('sending');
+    setStatus("sending");
 
-        const subject = `Portfolio Message from ${formData.name}`;
-        const body = `
-Name: ${formData.name}
-Email: ${formData.email}
+    try {
+        const response = await fetch("/api/send-email", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
 
-Message:
-${formData.message}
-        `;
+        if (!response.ok) {
+            throw new Error("Failed to send");
+        }
 
-        const mailtoLink = `mailto:shantnuvispute+web@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        setStatus("sent");
 
-        // open email client
-        window.location.href = mailtoLink;
+        setFormData({
+            name: "",
+            email: "",
+            message: "",
+        });
 
-        // show success after small delay
         setTimeout(() => {
-            setStatus('sent');
-        }, 1200);
-
-        // reset after 3 sec
-        setTimeout(() => {
-            setStatus('idle');
+            setStatus("idle");
         }, 4000);
-    };
+
+    } catch (err) {
+        console.error(err);
+        alert("Failed to send message.");
+        setStatus("idle");
+    }
+};
 
     return (
         <section id="contact" className="section contact-section">
