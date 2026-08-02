@@ -25,6 +25,24 @@ const projects = [
     },
 
     {
+    title: "Lothal — HTTP/1.1 Server",
+    description:
+        "A production-grade HTTP/1.1 web server built entirely from scratch in Modern C++. Features custom routing, middleware, multithreading, caching, compression, streaming, and an interactive documentation website served by Lothal itself.",
+    tech: [
+        "C++",
+        "WinSock",
+        "HTTP/1.1"
+    ],
+    github:
+        "https://github.com/ShantanuGV/Lothal-HTTP",
+    external:
+        "",
+    image:
+        "/lothal_banner.webp",
+    featured: true
+},
+
+    {
         title: "Carbon Emission Forecasting",
         description:
             "A CO₂ emission forecasting dashboard that visualizes environmental data, predicts future emission trends, and tracks sustainability targets through interactive analytics and data-driven insights.",
