@@ -36,7 +36,7 @@ const projects = [
     github:
         "https://github.com/ShantanuGV/Lothal-HTTP",
     external:
-        "",
+        "http://20.219.19.150:8080/",
     image:
         "/lothal_banner.webp",
     featured: true
