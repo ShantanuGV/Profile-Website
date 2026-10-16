@@ -41,6 +41,22 @@ const projects = [
         "/lothal_banner.webp",
     featured: true
 },
+    {
+    title: "Drum Gate",
+    description:
+        "DrumGate brings patients, doctors and the people behind care into one quietly powerful place.",
+    tech: [
+        "React",
+        "MySQL"
+    ],
+    github:
+        "https://github.com/ShantanuGV/DrumGate",
+    external:
+        "https://drum-gate.vercel.app/",
+    image:
+        "/drumgate.jpg",
+    featured: true
+},
 
     {
         title: "Carbon Emission Forecasting",
